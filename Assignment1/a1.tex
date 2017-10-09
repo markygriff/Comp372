@@ -19,13 +19,17 @@
 Similarities:
 \begin{enumerate}
   \item	Both are optimization problems (optimal route)
-  \item Both are weighted graph problems
+  \item Both are graph/path problems with nodes
+  \item Both can be weighted graph problems (shortest path can be either weighted
+  or not weighted)
 \end{enumerate}
 Differences:
 \begin{enumerate}
   \item TSP is an NP-complete problem whereas shortest-path is a known polynomial problem
   \item The solution to TSP is a cycle whereas the solution to the shortest-path is not
   \item TSP will visit at least one node twice (first and last node) whereas the shortest-path will never visit a node more than once
+  \item TSP must find the permutation of every node in the graph whereas shortest
+  path does not necessarily have to visit every node in the graph.
 \end{enumerate}
 
 \section{1.2-2}
@@ -159,6 +163,65 @@ We can now see that $\max(f(n),g(n)) = \Omega(f(n) + g(n))$ bounded by $c_{1}$ =
 
 
 \section{3-1}
+\textbf{a. The Asymptotic Upper Bound} \\
+We must show that $p(n) = O(n^k)$ for $k \geq d$. To do this, we must find a constant $c, n_{0} \geq 0$
+such that $0 \leq p(n) \leq c \cdot n^k$ for all $n \geq n_{0}$. \\
+\begin{align*}
+  p(n) &= \sum_{i=0}^{d} a_{i}n^i \\
+       &= a_{0} + a_{1} + a_2n^2 + \dots + a_dn^d \\
+       &\leq \sum_{i=0}^{d} a_i
+\end{align*}
+Due to the fact that $k \geq d$ for all $i$, $n^{i-k} \leq 1$ for all $n \geq 1$. \\
+Now we can say that $0 \leq p(n) \leq c \cdot n^k$ with $c = \sum_{i=0}^{d} a_i$ and $n_0 = 1$. \\
+Therefore $p(n) = O(n^k)$.
+\\
+
+\noindent
+\textbf{b. The Asymptotic Lower Bound} \\
+We must show that $p(n) = O(n^k)$ for $k \leq d$. To do this, we must find a constant $c, n_{0} \geq 0$
+such that $0 \leq c \cdot n^k \leq p(n)$ for all $n \geq n_{0}$. \\
+\begin{align*}
+  p(n) &= \sum_{i=0}^{d} a_{i}n^i \\
+       &= a_{0} + a_{1} + a_2n^2 + \dots + a_kn^k + \dots + a_dn^d \\
+       &\geq a_kn^k
+\end{align*}
+We can see from the above that $0 \leq c \cdot n^k \leq p(n)$ with $c = a_k$ and $n_0 = 1$. \\
+Therefore $p(n) = \Omega(n^k)$. \\
+
+\noindent
+\textbf{c. The Asymptotic Bound} \\
+We can see from the above proofs that when $k = d$, $p(n) = O(n)$ and $p(n) = \Omega(n)$.
+Therefore, $p(n) = \Theta(n)$. \\
+
+\noindent
+\textbf{d. The Asymptotic Tight Upper Bound} \\
+This proof is identical to that of the Asymptotic Upper Bound without the \\
+equality of $k$ and $d$.\\
+We could also use the limit definition of $o$-notation as follows: \\
+\begin{align*}
+  \lim_{n \to \infty} \frac{p(n)}{n^k} &= 0
+\end{align*}
+\begin{align*}
+ \lim_{n \to \infty} \frac{p(n)}{n^k} &= \lim_{n \to \infty} \frac{\sum_{i=0}^{d} a_in^i}{n^k} \\
+                                      &= \lim_{n \to \infty} \frac{a_{d}n^{d}}{n^k} \\
+                                      &= 0
+\end{align*}
+Therefore, $p(n) = o(n)$.\\
+
+\noindent
+\textbf{e. The Asymptotic Tight Lower Bound} \\
+This proof is identical to that of the Asymptotic Lower Bound without the \\
+equality of $k$ and $d$.\\
+We could also use the limit definition of $\omega$-notation as follows: \\
+\begin{align*}
+  \lim_{n \to \infty} \frac{p(n)}{n^k} &= \infty
+\end{align*}
+\begin{align*}
+ \lim_{n \to \infty} \frac{p(n)}{n^k} &= \lim_{n \to \infty} \frac{\sum_{i=0}^{d} a_in^i}{n^k} \\
+                                      &= \lim_{n \to \infty} \frac{a_{d}n^{d}}{n^k} \\
+                                      &= \infty
+\end{align*}
+Therefore, $p(n) = \omega(n)$.
 
 \section{4.1-2}
 BRUTE FORCE: find every subarray for each element in the array and keep
