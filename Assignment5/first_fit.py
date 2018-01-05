@@ -34,5 +34,6 @@ def first_fit(obj_list, size_max):
             bin_list.append(newbin)
 
     # print items in bins as lists
-    for bin in bin_list:
-        print bin.get_bin_list()
+    for num, bin in enumerate(bin_list):
+        print "Bin", num, ":", bin.get_bin_list()
+    print "Total bins used =", len(bin_list)
