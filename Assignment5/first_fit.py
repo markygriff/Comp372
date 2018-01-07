@@ -4,6 +4,8 @@
 # using a First-Fit strategy
 #
 
+import argparse
+import timeit
 from bin import Bin
 
 
@@ -32,6 +34,25 @@ def first_fit(obj_list):
             bin_list.append(newbin)
 
     # print items in bins as lists
-    for num, bin in enumerate(bin_list):
-        print "Bin", num, ":", bin.get_bin_list()
+    # for num, bin in enumerate(bin_list):
+        # print "Bin", num, ":", bin.get_bin_list()
     print "Total bins used =", len(bin_list)
+
+
+if __name__ == "__main__":
+    pars = argparse.ArgumentParser()
+    pars.add_argument("obj_file", help="path to file containing objects")
+    args = pars.parse_args()
+
+    with open(args.obj_file) as f:
+        lines = f.read().split()
+
+    lines = map(float, lines)
+    t = timeit.Timer(lambda: first_fit(lines))
+    elapsed = t.timeit(number=1)
+
+    with open('plotting/plot_data.txt', 'a') as f:
+        print >> f, len(lines), elapsed
+
+    print "Total number of objects =", len(lines)
+    print "Total elapsed time =", elapsed, "seconds"
