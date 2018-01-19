@@ -1,0 +1,10 @@
+Answers to assignment 4 can be found in '372a4.pdf'
+
+Implementation of GREEDY-SET-COVER for quesiton 35.3-1 is in 'greedy_set_cover.py'
+
+Test cases are in 'greedy_set_cover_tests.py'
+
+Requirments: python2.7
+
+To run/compile the test cases, run the following command in the project directory
+$ python2.7 greedy_set_cover_tests.py
