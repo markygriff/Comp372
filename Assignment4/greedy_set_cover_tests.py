@@ -16,10 +16,9 @@ def worst_case_test():
 def optimal_test():
     ''' Test if GSC returns the optimal cover '''
     uncovered = set([2, 4, 6, 8, 10, 12])
-    subs = [set([4, 8]), set([2, 4, 8, 12]), set([6, 8, 10]),
-            set([2, 4, 6, 8, 10, 12])]
+    subs = [set([4, 8]), set([2, 4, 8, 12]), set([6, 8, 10])]
     res = GSC(uncovered, subs)
-    if res == [set([4, 8]), set([2, 4, 8, 12]), set([6, 8, 10])]:
+    if res == [set([2, 4, 8, 12]), set([6, 8, 10])]:
         print "OPTIMAL CASE TEST : PASS\n"
     else:
         print "OPTIMAL CASE TEST : FAIL\n", "Got ", res, "\n", "Expected", \
