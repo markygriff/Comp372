@@ -1,3 +1,5 @@
+''' Mark Griffith '''
+
 from greedy_set_cover import GSC
 
 
