@@ -9,6 +9,16 @@
 [ -f random_input.txt ] && rm random_input.txt
 touch random_input.txt
 
+if [ "$#" -ne 1 ]; then
+  echo usage: random_test.sh num_tests
+  exit 1
+fi
+
+if [ $1 -le 0 ]; then
+  echo please choose a positive number of tests to run.
+  exit 1
+fi
+
 while true; do
   read -p "Would you like to run decreasing? (y/n) " yn
   case $yn in
@@ -20,7 +30,7 @@ done
 
 cnt=0
 objects=0
-while [ $cnt -le 30 ]; do # 30 iterations by default
+while [ $cnt -le $(($1-1)) ]; do
   while [ $objects -le 499 ]; do # 500 objects by default
     # append object sizes to the input file
     n=$(python -c "import random; print random.uniform(0.01,0.99)")

@@ -6,6 +6,16 @@
 # and first-fit-decreasing heuristic using the worst case input data
 #
 
+if [ "$#" -ne 1 ]; then
+  echo usage: worst_case_test.sh num_tests
+  exit 1
+fi
+
+if [ $1 -le 0 ]; then
+  echo please choose a positive number of tests to run.
+  exit 1
+fi
+
 [ -f worst_input.txt ] && rm worst_input.txt
 touch worst_input.txt
 
@@ -20,7 +30,7 @@ done
 
 cnt=0
 objects=0
-while [ $cnt -le 30 ]; do # 30 iterations by default
+while [ $cnt -le $(($1-1)) ]; do
   while [ $objects -le 499 ]; do  # 500 objects by default
     # append object sizes to the input file
     echo 0.9 >> worst_input.txt

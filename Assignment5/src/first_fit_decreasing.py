@@ -46,7 +46,7 @@ if __name__ == "__main__":
     elapsed, num_bins = time_fn(first_fit_decreasing, objects)
 
     # append first-fit-decreasing results to the output file
-    with open('plotting/plot_data.txt', 'a') as f:
+    with open('../plotting/plot_data.txt', 'a') as f:
         print >> f, len(objects), elapsed
 
     print "Total number of objects =", len(objects)
