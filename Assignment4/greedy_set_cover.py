@@ -25,8 +25,15 @@ def GSC(uncovered, subsets):
 
     # Next, we iterate over the subsets in order
     # of greatest size to smallest size
-    sorted(size_dict.keys())
-    for size in size_dict.keys()[::-1]:
+    # A slight optimization was made here to iterate
+    # starting at the maximum size a subset can be
+    # (the size of uncovered) instead of first
+    # sorting the size_dict. The sorting of
+    # size_dict would take O(nlgn) and would ruin
+    # the run time of this algorithm
+    for size in xrange(len(uncovered), -1, -1):
+        if size not in size_dict:
+            continue
         # Add each subset to the cover and remove from the
         # subset's elements from uncovered
         for subset in size_dict[size]:
